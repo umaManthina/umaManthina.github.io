@@ -1,0 +1,10 @@
+node_modules
+dist
+dist-ssr
+*.local
+.DS_Store
+*.tsbuildinfo
+
+# Raw reference/source material (mined for content already copied into public/)
+future_hacks/
+ux design/

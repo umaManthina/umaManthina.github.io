@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #faf1ec;
+  color: #161311;
+}
+
+/* Subtle paper grain overlay, layered via SVG noise so it never looks like a flat fill */
+.grain-bg {
+  position: relative;
+  background-color: #faf1ec;
+  background-image:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.75), transparent 60%),
+    radial-gradient(circle at 80% 60%, rgba(0, 0, 0, 0.08), transparent 65%);
+}
+
+.tracking-widest-lg {
+  letter-spacing: 0.35em;
+}
