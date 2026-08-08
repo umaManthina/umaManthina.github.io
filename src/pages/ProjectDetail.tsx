@@ -3,6 +3,7 @@ import { getProjectBySlug, projects } from '../data/projects'
 import CaseStudy from '../components/CaseStudy'
 import RecycleRing from '../components/RecycleRing'
 import WireframePlaceholder from '../components/WireframePlaceholder'
+import ScreenshotCarousel from '../components/ScreenshotCarousel'
 
 export default function ProjectDetail() {
   const { slug } = useParams<{ slug: string }>()
@@ -81,15 +82,83 @@ export default function ProjectDetail() {
 
         {project.caseStudy ? (
           <>
-            <div className="mb-20 max-w-3xl mx-auto text-center">
-              <p className="font-display text-xs tracking-widest-lg uppercase text-ink/50">
-                {project.number} / {String(projects.length).padStart(2, '0')}
-              </p>
-              <p className="mt-5 font-serif text-xl leading-relaxed text-ink/80">
-                {project.fullDescription}
-              </p>
+            {project.introImages ? (
+              <div className="mb-20 grid gap-10 sm:gap-14 md:grid-cols-2 md:items-center">
+                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                  <img
+                    src={project.introImages[0]}
+                    alt={`${project.title} prototype screenshot — home page`}
+                    className="w-full rounded-sm border border-ink/10 shadow-xl"
+                  />
+                  <div className="flex flex-col gap-3 sm:gap-4">
+                    <img
+                      src={project.introImages[1]}
+                      alt={`${project.title} prototype screenshot — event listing`}
+                      className="w-full rounded-sm border border-ink/10 shadow-xl"
+                    />
+                    <img
+                      src={project.introImages[2]}
+                      alt={`${project.title} prototype screenshot — account page`}
+                      className="w-full rounded-sm border border-ink/10 shadow-xl"
+                    />
+                  </div>
+                </div>
 
-              <div className="mt-8 border-t border-ink/15 pt-6">
+                <div className="text-center md:text-left">
+                  <p className="font-display text-xs tracking-widest-lg uppercase text-ink/50">
+                    {project.number} / {String(projects.length).padStart(2, '0')}
+                  </p>
+                  <p className="mt-5 font-serif text-xl leading-relaxed text-ink/80">
+                    {project.fullDescription}
+                  </p>
+
+                  <div className="mt-8 border-t border-ink/15 pt-6">
+                    <p className="font-display text-xs tracking-widest-lg uppercase text-ink/50 mb-3">
+                      Credits
+                    </p>
+                    <ul className="space-y-1 font-serif text-ink/70">
+                      {project.credits.map((credit) => (
+                        <li key={credit}>{credit}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div className="mb-20 max-w-3xl mx-auto text-center">
+                <p className="font-display text-xs tracking-widest-lg uppercase text-ink/50">
+                  {project.number} / {String(projects.length).padStart(2, '0')}
+                </p>
+                {project.previewHeading && (
+                  <h2 className="mt-3 font-display text-xs tracking-widest-lg uppercase text-ink/50">
+                    {project.previewHeading}
+                  </h2>
+                )}
+                <p className="mt-5 font-serif text-xl leading-relaxed text-ink/80">
+                  {project.fullDescription}
+                </p>
+
+                {project.previewScreens && (
+                  <div className="relative left-1/2 mt-10 w-screen -translate-x-1/2">
+                    <div className="flex flex-col gap-1.5 sm:flex-row">
+                      {project.previewScreens.map((src, i) => (
+                        <img
+                          key={src}
+                          src={src}
+                          alt={`${project.title} product screen ${i + 1}`}
+                          className="w-full sm:w-1/3"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <CaseStudy sections={project.caseStudy} />
+
+            {!project.introImages && (
+              <div className="mt-20 max-w-3xl mx-auto border-t border-ink/15 pt-6 text-center">
                 <p className="font-display text-xs tracking-widest-lg uppercase text-ink/50 mb-3">
                   Credits
                 </p>
@@ -99,9 +168,18 @@ export default function ProjectDetail() {
                   ))}
                 </ul>
               </div>
-            </div>
+            )}
 
-            <CaseStudy sections={project.caseStudy} />
+            {project.showContactNote && (
+              <div className="mt-8 max-w-3xl mx-auto text-center space-y-1">
+                <p className="font-serif text-xl leading-relaxed text-ink/80">
+                  Have questions about this project? I’d love to talk more about it.
+                </p>
+                <p className="font-serif text-xl leading-relaxed text-ink/80">
+                  Contact me: umamanthina@gmail.com
+                </p>
+              </div>
+            )}
           </>
         ) : (
           <div className="flex flex-col items-center gap-4">
@@ -119,35 +197,28 @@ export default function ProjectDetail() {
               )}
             </div>
 
-            {(project.playEmbed || project.productImage) && (
-              <div className="mt-4 w-full max-w-2xl aspect-[16/9] overflow-hidden rounded-sm border border-ink/10 bg-black shadow-xl">
-                {project.playEmbed ? (
-                  <iframe
-                    src={project.playEmbed.embedUrl}
-                    title={`${project.title} — playable browser game`}
-                    className="h-full w-full"
-                    frameBorder={0}
-                    allow="autoplay; fullscreen; gamepad"
-                    allowFullScreen
-                  />
-                ) : (
+            {project.screenshots ? (
+              <ScreenshotCarousel images={project.screenshots} alt={project.title} />
+            ) : (
+              project.productImage && (
+                <div className="mt-4 w-full max-w-2xl aspect-[16/9] overflow-hidden rounded-sm border border-ink/10 bg-black shadow-xl">
                   <img
                     src={project.productImage}
                     alt={project.hasRealArtwork ? `${project.title} artwork` : `${project.title} — placeholder product mockup`}
                     className="h-full w-full object-cover object-[center_15%]"
                   />
-                )}
-              </div>
+                </div>
+              )
             )}
 
-            {project.playEmbed && (
+            {project.externalLink && (
               <a
-                href={project.playEmbed.pageUrl}
+                href={project.externalLink.url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-display text-xs tracking-widest-lg uppercase text-ink/50 underline hover:text-ink/80 transition-colors"
               >
-                Play on itch.io ↗
+                {project.externalLink.label}
               </a>
             )}
 
@@ -191,6 +262,17 @@ export default function ProjectDetail() {
                   ))}
                 </ul>
               </div>
+
+              {project.showContactNote && (
+                <div className="mt-8 space-y-1">
+                  <p className="font-serif text-lg leading-relaxed text-ink/80">
+                    Have questions about this project? I’d love to talk more about it.
+                  </p>
+                  <p className="font-serif text-lg leading-relaxed text-ink/80">
+                    Contact me: umamanthina@gmail.com
+                  </p>
+                </div>
+              )}
             </div>
           </div>
         )}

@@ -54,14 +54,20 @@ export interface Project {
   productImage: string
   credits: string[]
   playEmbed?: PlayEmbed
+  screenshots?: string[]
+  externalLink?: CaseStudyLink
   previewImage?: string
   previewPlaceholder?: boolean
+  previewScreens?: string[]
   bannerLabel?: string
   subheading?: string
   bodyParagraphs?: string[]
   controls?: Control[]
   controlsLabel?: string
   fullDescription: string
+  previewHeading?: string
+  showContactNote?: boolean
+  introImages?: string[]
   hasRealArtwork?: boolean
   useRecycleRingArt?: boolean
   iframeArt?: string
@@ -81,6 +87,11 @@ export const projects: Project[] = [
     hasRealArtwork: true,
     fullDescription:
       'A redesign of the San Mateo Public Library website, built around accessibility for seniors and cognitive impairments alongside a fast, expressive experience for younger patrons.',
+    introImages: [
+      '/projects/ui-ux/prototype/prototype-home.png',
+      '/projects/ui-ux/prototype/prototype-events.png',
+      '/projects/ui-ux/prototype/prototype-my-books.png',
+    ],
     caseStudy: [
       {
         heading: 'Background',
@@ -243,13 +254,19 @@ export const projects: Project[] = [
     credits: ['Team: Uma Manthina, Apy Sen, Akhil Manthina', 'Engine: Godot'],
     hasRealArtwork: true,
     bannerLabel: 'Melon Jam 2026',
-    playEmbed: {
-      embedUrl: 'https://html-classic.itch.zone/html/18415811/game/index.html?v=1784565028',
-      width: 640,
-      height: 360,
-      pageUrl: 'https://apysen.itch.io/flashpoint-pi',
+    screenshots: [
+      '/projects/game-jam/screenshots/screenshot-01.jpg',
+      '/projects/game-jam/screenshots/screenshot-02.jpg',
+      '/projects/game-jam/screenshots/screenshot-03.jpg',
+      '/projects/game-jam/screenshots/screenshot-04.jpg',
+      '/projects/game-jam/screenshots/screenshot-05.jpg',
+    ],
+    externalLink: {
+      label: 'Play on itch.io ↗',
+      url: 'https://apysen.itch.io/flashpoint-pi',
     },
-    subheading: 'This is a project I made for the 2026 Melon Jam with a theme of Spark!',
+    subheading:
+      "This is a project we made for the 2026 Melon Jam with a theme of Spark! My role was establishing the game's art direction, designing the homepage, and building the visual assets and itch.io backplate.",
     bodyParagraphs: [
       'All an inspector needs to survive a cultist dungeon is a lighter, a short supply of flames, and a longer supply of one liners.',
       'Light your way through the pitch-black environment, and explode your way to the bottom. Just keep an eye on the flame. When it goes out, so do you.',
@@ -262,6 +279,7 @@ export const projects: Project[] = [
     ],
     fullDescription:
       'PLACEHOLDER — Highlights from a weekend game jam, including concept sketches, gameplay screenshots, and postmortem notes. Replace with real project description.',
+    showContactNote: true,
   },
   {
     slug: 'hackathon',
@@ -271,12 +289,19 @@ export const projects: Project[] = [
     cardImage: '',
     bannerImage: '',
     productImage: '',
-    previewPlaceholder: true,
+    previewScreens: [
+      '/projects/hackathon/screens/iris-01.jpg',
+      '/projects/hackathon/screens/iris-02.jpg',
+      '/projects/hackathon/screens/iris-03.jpg',
+    ],
     credits: ['Built by Sanjoli Chattopadhyay & Uma Manthina', 'FutureHacks 8'],
     hasRealArtwork: true,
     iframeArt: '/projects/hackathon/iris-preview.html',
     bannerLabel: 'FutureHacks 8',
-    fullDescription: 'Environmental Intelligence Scanner — built for FutureHacks 8: Build the City of Tomorrow.',
+    previewHeading: 'Environmental Footprint Scanner',
+    fullDescription:
+      "This is a project we made for the 2026 FutureHacks Hackathon! My role was product ideation and designing the frontend of the website/product UI.",
+    showContactNote: true,
     caseStudy: [
       {
         heading: 'Inspiration',
@@ -344,18 +369,6 @@ export const projects: Project[] = [
         ],
       },
     ],
-  },
-  {
-    slug: 'concept-design',
-    number: '04',
-    title: 'Concept Design',
-    description: '',
-    cardImage: 'https://placehold.co/1200x1500/2a2419/d9c9a8?text=Concept+Design+%E2%80%94+placeholder+artwork',
-    bannerImage: 'https://placehold.co/1920x900/2a2419/d9c9a8?text=Concept+Design+banner+%E2%80%94+placeholder',
-    productImage: 'https://placehold.co/1200x800/eee7d6/161311?text=Concept+sheets+%E2%80%94+placeholder',
-    credits: ['Illustration & Design: Uma Manthina'],
-    fullDescription:
-      'PLACEHOLDER — Speculative illustration and concept art exploring characters, environments, and mood. Replace with real project description.',
   },
 ]
 

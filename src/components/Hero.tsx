@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import Navbar from './Navbar'
 
 export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -32,7 +33,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative h-screen w-full bg-black p-3 sm:p-4">
+    <section ref={sectionRef} className="relative h-[70vh] w-full bg-black p-3 sm:p-4">
       <div
         ref={frameRef}
         className="relative h-full w-full rounded-[18px] border-2 border-cream overflow-hidden"
@@ -40,10 +41,12 @@ export default function Hero() {
         {/* PLACEHOLDER — blank artwork area, replace with custom hero artwork */}
         <div className="absolute inset-0 bg-[#0d0b0a]" />
 
+        <Navbar />
+
         {/* Title block */}
         <div
           ref={titleRef}
-          className="relative z-10 flex h-full w-fit max-w-[50%] flex-col justify-center px-3 sm:px-4 md:px-5"
+          className="relative z-10 flex h-full w-fit max-w-[50%] flex-col justify-center px-1.5 sm:px-2 md:px-2.5"
         >
           <h1 className="font-poster font-black uppercase leading-[0.82] text-cream text-[3.25rem] sm:text-[4.35rem] md:text-[5.45rem] lg:text-[6.5rem] tracking-tight [text-shadow:2px_2px_0_rgba(0,0,0,0.35)]">
             Portfolio
