@@ -60,6 +60,7 @@ export interface Project {
   previewPlaceholder?: boolean
   previewScreens?: string[]
   bannerLabel?: string
+  pageHeading?: string
   subheading?: string
   bodyParagraphs?: string[]
   controls?: Control[]
@@ -254,6 +255,7 @@ export const projects: Project[] = [
     credits: ['Team: Uma Manthina, Apy Sen, Akhil Manthina', 'Engine: Godot'],
     hasRealArtwork: true,
     bannerLabel: 'Melon Jam 2026',
+    pageHeading: 'Winning Game Jam Project!',
     screenshots: [
       '/projects/game-jam/screenshots/screenshot-01.jpg',
       '/projects/game-jam/screenshots/screenshot-02.jpg',
@@ -266,7 +268,7 @@ export const projects: Project[] = [
       url: 'https://apysen.itch.io/flashpoint-pi',
     },
     subheading:
-      "This is a project we made for the 2026 Melon Jam with a theme of Spark! My role was establishing the game's art direction, designing the homepage, and building the visual assets and itch.io backplate.",
+      "This is a project we made for the 2026 Melon Jam with a theme of Spark! We took home first place. My role was establishing the game's art direction, designing the homepage, and building the visual assets and itch.io backplate.",
     bodyParagraphs: [
       'All an inspector needs to survive a cultist dungeon is a lighter, a short supply of flames, and a longer supply of one liners.',
       'Light your way through the pitch-black environment, and explode your way to the bottom. Just keep an eye on the flame. When it goes out, so do you.',

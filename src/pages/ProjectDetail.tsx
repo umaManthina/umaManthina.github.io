@@ -188,7 +188,7 @@ export default function ProjectDetail() {
                 {project.number} / {String(projects.length).padStart(2, '0')}
               </p>
               <h2 className="mt-3 font-display text-3xl uppercase text-ink">
-                {project.title}
+                {project.pageHeading ?? project.title}
               </h2>
               {project.subheading && (
                 <p className="mt-4 font-serif text-lg italic leading-relaxed text-ink/80">
